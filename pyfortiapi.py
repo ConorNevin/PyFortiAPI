@@ -587,3 +587,18 @@ class FortiGate:
         result = self.delete(api_url)
         return result
 
+    def get_routing_table_ipv4(self, vdom, ip_mask=None):
+        """
+        Get active routing tables for vdom
+
+        :param vdom: VDOM to querying routing table for
+        :param ip_mask: Filter routing table
+        :return:
+        """
+        api_url = self.urlbase + "api/v2/monitor/router/ipv4?vdom=" + vdom
+
+        if ip_mask is not None:
+            api_url += "&ip_mask=" + ip_mask
+
+        results = self.get(api_url)
+        return results
